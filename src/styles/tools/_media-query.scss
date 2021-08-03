@@ -1,0 +1,30 @@
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @if $breakpoint == xxl {
+      @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else {
+      $i: index($breakpoints, $breakpoint map-get($breakpoints, $breakpoint)) - 1;
+      @media screen and (min-width: map-get($breakpoints, $breakpoint)) and (max-width: (map-get($breakpoints, index-to-key($i))) - 1) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+      @media screen and (max-width: map-get($breakpoints, $breakpoint)) {
+          @content; 
+      }
+  }
+}
+
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+      @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+          @content; 
+      }
+  }
+}

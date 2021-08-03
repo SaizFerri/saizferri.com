@@ -1,0 +1,26 @@
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  display: inline-block;
+  text-transform: none;
+  appearance: none;
+  border: none;
+  // background-color: var(--primary);
+  // color: var(--white);
+  min-width: 150px;
+  padding: 0.5rem 2rem;
+  transition: all 200ms ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}

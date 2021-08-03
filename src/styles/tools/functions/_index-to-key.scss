@@ -1,0 +1,5 @@
+@function index-to-key($index) {
+  $keys: map-keys($breakpoints); // A list of all keys in a $breakpoints map
+
+  @return nth($keys, $index);
+}

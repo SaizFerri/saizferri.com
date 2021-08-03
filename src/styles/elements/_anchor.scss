@@ -1,0 +1,16 @@
+a {
+  font-weight: 700;
+  display: inline-block;
+  text-decoration: none;
+  color: $color-primary;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+a.clean {
+  &:hover {
+    text-decoration: none;
+  }
+}
