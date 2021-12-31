@@ -1,0 +1,19 @@
+a {
+  &.link--clean {
+    &::before {
+      display: none;
+    }
+  }
+
+  &.link--light {
+    color: $color-text-inverted;
+
+    &:hover {
+      color: $color-primary;
+
+      svg {
+        color: $color-primary;
+      }
+    }
+  }
+}

@@ -1,16 +1,37 @@
-a {
-  font-weight: 700;
-  display: inline-block;
-  text-decoration: none;
-  color: $color-primary;
-
-  &:hover {
-    text-decoration: underline;
+@keyframes linkHover {
+  0% {
+    transform: scaleX(1) translateY(calc(-50%));
+  }
+  50% {
+    transform: scaleX(50%) translateY(calc(-50%));
+  }
+  100% {
+    transform: scaleX(1) translateY(calc(-50%));
   }
 }
 
-a.clean {
+a {
+  position: relative;
+  font-weight: 400;
+  display: inline-block;
+  text-decoration: none;
+  color: $color-primary;
+  transition: all 100ms ease-in-out;
+
   &:hover {
-    text-decoration: none;
+    &::before {
+      animation: linkHover 1000ms infinite;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    height: 2px;
+    width: 100%;
+    background-color: $color-primary;
+    top: calc(50% + 0.65em);
+    transform: translateY(calc(-50%));
   }
 }
