@@ -1,0 +1,15 @@
+query getAllEducation {
+  educations(sort: "-startDate") {
+    id
+    title
+    description
+    place
+    startDate
+    endDate
+    city
+    image {
+      id
+      title
+    }
+  }
+}

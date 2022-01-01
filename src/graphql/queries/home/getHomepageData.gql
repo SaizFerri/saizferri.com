@@ -1,0 +1,15 @@
+query getHomepageData {
+  Homepage {
+    id
+    heroSmallTitle
+    heroTitle
+    heroDescription
+    aboutTitle
+    aboutDescription
+    experienceTitle
+    projectsTitle
+    educationTitle
+    contactTitle
+    contactDescription
+  }
+}
