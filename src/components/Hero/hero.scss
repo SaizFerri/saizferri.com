@@ -1,0 +1,22 @@
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+  background: $color-background-inverted;
+  color: $color-text-inverted;
+
+  h3 {
+    color: $color-primary;
+    margin-bottom: spacing(xsmall);
+    line-height: 1;
+  }
+
+  h1 {
+    margin-bottom: spacing(large);
+    line-height: 1.25;
+  }
+
+  @include breakpoint-up(sm) {
+    min-height: 600px;
+  }
+}

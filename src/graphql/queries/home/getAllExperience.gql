@@ -1,0 +1,21 @@
+query getAllExperience {
+  experiences(sort: "-startDate") {
+    id
+    position
+    description
+    company
+    companyUrl
+    startDate
+    endDate
+    city
+    image {
+      id
+      title
+    }
+    labels {
+      label {
+        name
+      }
+    }
+  }
+}

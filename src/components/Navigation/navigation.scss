@@ -1,0 +1,29 @@
+.nav {
+  background-color: $color-background-inverted;
+  color: $color-text-inverted;
+  padding: spacing(base) 0;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__links {
+    svg {
+      transition: color 100ms ease-in-out;
+    }
+
+    a {
+      &:hover {
+        svg {
+          color: $color-primary;
+        }
+      }
+
+      &:not(:first-child) {
+        margin-left: spacing(small);
+      }
+    }
+  }
+}

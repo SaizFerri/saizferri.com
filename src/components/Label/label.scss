@@ -1,0 +1,8 @@
+.label {
+  display: inline-block;
+  font-size: font-size(small);
+  padding: spacing(xxsmall) spacing(xsmall);
+  background-color: $color-light-grey;
+  color: $color-grey-3;
+  border-radius: 4px;
+}

@@ -1,0 +1,81 @@
+.timeline {
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: spacing(xxxlarge);
+
+    &.is-last {
+      padding-bottom: 0;
+      &::before {
+        display: none;
+      }
+    }
+
+    &.is-active {
+      .timeline__image {
+        border-color: $color-primary;
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      top: 70px;
+      left: 35px;
+      background-color: $color-grey-2;
+    }
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    flex: 0 0 auto;
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    border: 2px solid $color-grey-2;
+    margin-right: spacing(base);
+    background-color: $color-background;
+
+    img {
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  &__body {
+    h6 {
+      line-height: 1.25;
+      margin-bottom: spacing(xsmall);
+    }
+    small {
+      display: block;
+      margin-bottom: spacing(medium);
+    }
+  }
+
+  &__labels {
+    margin-bottom: calc(spacing(medium) - spacing(xxsmall));
+
+    .label {
+      margin: 0 spacing(xxsmall) spacing(xxsmall) 0;
+    }
+  }
+
+  @include breakpoint-up(sm) {
+    &__item {
+      &::before {
+        top: 100px;
+        left: 50px;
+      }
+    }
+
+    &__image {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
