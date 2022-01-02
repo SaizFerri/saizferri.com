@@ -20,7 +20,7 @@ class CustomDocument extends Document {
           <meta name="robots" content="index, follow" />
           <meta
             name="description"
-            content="Portfolio of Adrian Saiz Ferri, software engineer"
+            content="Portfolio of Adrian Saiz Ferri, Software Engineer"
           />
           <link
             rel="apple-touch-icon"

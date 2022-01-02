@@ -1,0 +1,20 @@
+query getAllProjects {
+  projects {
+    id
+    title
+    description
+    type
+    image {
+      id
+      title
+      width
+      height
+    }
+    links
+    labels {
+      label {
+        name
+      }
+    }
+  }
+}
