@@ -1,0 +1,70 @@
+.projects {
+  .project-item {
+    display: flex;
+    flex-direction: column;
+
+    &:not(:last-of-type) {
+      margin-bottom: spacing(xxlarge);
+    }
+
+    &__body {
+      small {
+        color: $color-primary;
+        line-height: 1.75;
+      }
+
+      h4 {
+        line-height: 1.5;
+        margin-bottom: spacing(xsmall);
+      }
+    }
+
+    &__description {
+      position: relative;
+      z-index: 1;
+      background-color: $color-white;
+      padding: spacing(medium);
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: spacing(medium);
+    }
+
+    &__labels {
+      margin-bottom: calc(spacing(large) - spacing(xxsmall));
+
+      .label {
+        margin: 0 spacing(xxsmall) spacing(xxsmall) 0;
+      }
+    }
+
+    &__links {
+      margin-bottom: spacing(medium);
+      a {
+        margin-right: spacing(base);
+      }
+    }
+  }
+
+  @include breakpoint-up(lg) {
+    .project-item {
+      flex-direction: row;
+      align-items: center;
+
+      &__body {
+        flex: 1 0 50%;
+      }
+
+      &__image {
+        flex: 1 0 50%;
+      }
+
+      &__description {
+        width: 110%;
+      }
+
+      &__links {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

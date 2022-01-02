@@ -13,6 +13,7 @@ export default function Navigation() {
         <div className="nav__content">
           <div className="nav__logo">
             <Image
+              priority
               src="/img/logo-white.svg"
               width={50}
               height={68}

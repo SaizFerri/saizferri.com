@@ -1,5 +1,8 @@
+import { DirectusImage } from "./directus.interface";
+import { ProjectLink } from "./projectItem.interface";
+
 export interface HomepageDto {
-  id: string;
+  id: number;
   heroSmallTitle: string;
   heroTitle: string;
   heroDescription: string;
@@ -25,10 +28,20 @@ export interface ExperienceDto {
     id: string;
     title: string;
   };
-  labels: ExperienceLabelDto[];
+  labels: LabelDto[];
 }
 
-export interface ExperienceLabelDto {
+export interface ProjectDto {
+  id: number;
+  title: string;
+  description: string;
+  type: string;
+  image: DirectusImage;
+  links?: ProjectLink[];
+  labels: LabelDto[];
+}
+
+export interface LabelDto {
   label: {
     name: string;
   };
