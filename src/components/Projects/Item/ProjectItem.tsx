@@ -60,10 +60,10 @@ function ProjectItemLinks({ links = [] }: ProjectItemProps) {
         let icon = null;
 
         switch (linkType) {
-          case "github":
+          case ProjectItemLinkType.GITHUB:
             icon = <GitHub />;
             break;
-          case "webpage":
+          case ProjectItemLinkType.WEBPAGE:
             icon = <ExternalLink />;
             break;
           default:
@@ -84,6 +84,10 @@ function ProjectItemLinks({ links = [] }: ProjectItemProps) {
 
 interface Props extends IProjectItem {}
 
+const enum ProjectItemLinkType {
+  GITHUB = "github",
+  WEBPAGE = "webpage",
+}
 interface ProjectItemProps {
   links: ProjectLink[];
 }

@@ -21,8 +21,8 @@ export interface ExperienceDto {
   description: string;
   company: string;
   companyUrl: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   city: string;
   image: {
     id: string;
@@ -52,8 +52,8 @@ export interface EducationDto {
   title: string;
   description: string;
   place: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   city: string;
   image: {
     id: string;

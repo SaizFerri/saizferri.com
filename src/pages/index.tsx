@@ -11,7 +11,16 @@ import Navigation from "@components/Navigation/Navigation";
 import Projects from "@components/Projects/Projects";
 import Timeline from "@components/Timeline/Timeline";
 
+import {
+  mapEducationToTimelineItem,
+  mapExperieceToTimelineItem,
+  mapProjectToProjectItem,
+} from "@utils/mappers";
+
+import { getCollection } from "@services/collection";
+
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
+import { Collection } from "../const/collections";
 import GET_ALL_EDUCATION from "../graphql/queries/home/getAllEducation.gql";
 import GET_ALL_EXPERIENCE from "../graphql/queries/home/getAllExperience.gql";
 import GET_ALL_PROJECTS from "../graphql/queries/home/getAllProjects.gql";
@@ -20,7 +29,6 @@ import {
   EducationDto,
   ExperienceDto,
   HomepageDto,
-  LabelDto,
   ProjectDto,
 } from "../interfaces/dto.interface";
 import { ProjectItem } from "../interfaces/projectItem.interface";
@@ -107,78 +115,32 @@ interface Props {
 export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
-  const homepage = await apolloClient.query({
+  const homepageData = await getCollection({
     query: GET_HOMEPAGE,
+    collectionName: Collection.HOMEPAGE,
   });
 
-  const experiences = await apolloClient.query({
+  const experienceData = await getCollection<ExperienceDto, TimelineItem>({
     query: GET_ALL_EXPERIENCE,
+    collectionName: Collection.EXPERIENCE,
+    mapper: mapExperieceToTimelineItem,
   });
 
-  const projects = await apolloClient.query({
+  const projectsData = await getCollection<ProjectDto, ProjectItem>({
     query: GET_ALL_PROJECTS,
+    collectionName: Collection.PROJECTS,
+    mapper: mapProjectToProjectItem,
   });
 
-  const educations = await apolloClient.query({
+  const educationData = await getCollection<EducationDto, TimelineItem>({
     query: GET_ALL_EDUCATION,
+    collectionName: Collection.EDUCATION,
+    mapper: mapEducationToTimelineItem,
   });
-
-  let experienceData: TimelineItem[] = [];
-  let projectsData: ProjectItem[] = [];
-  let educationData: TimelineItem[] = [];
-
-  if (experiences) {
-    experienceData = experiences.data.experiences.map(
-      (item: ExperienceDto) => ({
-        id: item.id,
-        position: item.position,
-        description: item.description,
-        imgSrc: item.image.id,
-        imgAlt: item.image.title,
-        company: item.company,
-        companyUrl: item.companyUrl,
-        startDate: item.startDate,
-        endDate: item.endDate ?? "present",
-        city: item.city,
-        labels: item.labels.map((label: LabelDto) => label.label.name),
-      })
-    );
-  }
-
-  if (projects) {
-    projectsData = projects.data.projects.map((item: ProjectDto) => ({
-      id: item.id,
-      type: item.type,
-      title: item.title,
-      description: item.description,
-      labels: item.labels.map((label: LabelDto) => label.label.name),
-      image: {
-        src: item.image.id,
-        width: item.image.width,
-        height: item.image.height,
-        alt: item.image.title,
-      },
-      links: item.links,
-    }));
-  }
-
-  if (educations) {
-    educationData = educations.data.educations.map((item: EducationDto) => ({
-      id: item.id,
-      position: item.title,
-      description: item.description,
-      imgSrc: item.image.id,
-      imgAlt: item.image.title,
-      company: item.place,
-      startDate: item.startDate ?? "always",
-      endDate: item.endDate,
-      city: item.city,
-    }));
-  }
 
   return addApolloState(apolloClient, {
     props: {
-      homepageData: homepage.data.Homepage,
+      homepageData,
       experienceData,
       projectsData,
       educationData,

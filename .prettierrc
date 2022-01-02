@@ -6,6 +6,7 @@
     "^@components/(.*)$",
     "^@utils/(.*)$",
     "^@interfaces/(.*)$",
+    "^@services/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

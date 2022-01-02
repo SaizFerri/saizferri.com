@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { format } from "date-fns";
+import * as fns from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -25,16 +25,6 @@ export default function TimelineItem({
   isLast = false,
   isActive = false,
 }: ITimelineItem) {
-  const parsedStartDate = Date.parse(startDate);
-  const startDateDisplay = isNaN(parsedStartDate)
-    ? startDate
-    : format(parsedStartDate, "MM.yyyy");
-
-  const parsedEndDate = Date.parse(endDate);
-  const endDateDisplay = isNaN(parsedEndDate)
-    ? endDate
-    : format(parsedEndDate, "MM.yyyy");
-
   return (
     <div
       className={classnames("timeline__item", {
@@ -55,29 +45,15 @@ export default function TimelineItem({
         <h6>
           <b>{position}</b>
           {company && (
-            <>
-              &nbsp;at&nbsp;
-              {companyUrl ? (
-                <Link href={companyUrl}>
-                  <a target="_blank">{company}</a>
-                </Link>
-              ) : (
-                <span className="color-primary">{company}</span>
-              )}
-            </>
+            <TimelineItemCompany company={company} companyUrl={companyUrl} />
           )}
         </h6>
         {startDate && (
-          <small>
-            {startDateDisplay}
-            {endDate && <> - {endDateDisplay}</>}
-            &nbsp;
-            {city && (
-              <>
-                {"//"} {city}
-              </>
-            )}
-          </small>
+          <TimelineItemDateCity
+            startDate={startDate}
+            endDate={endDate}
+            city={city}
+          />
         )}
         {labels.length > 0 && (
           <div className="timeline__labels">
@@ -89,5 +65,59 @@ export default function TimelineItem({
         <ReactMarkdown>{description}</ReactMarkdown>
       </div>
     </div>
+  );
+}
+
+function parseDate(date: string, format: string): string {
+  const parsedDate = Date.parse(date);
+  return isNaN(parsedDate) ? date : fns.format(parsedDate, format);
+}
+
+function TimelineItemCompany({
+  company,
+  companyUrl,
+}: Pick<ITimelineItem, "company" | "companyUrl">) {
+  const Content = ({ children }: { children: React.ReactNode }) => (
+    <>&nbsp;at&nbsp;{children}</>
+  );
+
+  if (!companyUrl) {
+    return (
+      <Content>
+        <span className="color-primary">{company}</span>
+      </Content>
+    );
+  }
+
+  return (
+    <Content>
+      <Link href={companyUrl}>
+        <a target="_blank">{company}</a>
+      </Link>
+    </Content>
+  );
+}
+
+function TimelineItemDateCity({
+  startDate = "",
+  endDate = "",
+  city,
+}: Pick<ITimelineItem, "startDate" | "endDate" | "city">) {
+  const parsedStartDate = parseDate(startDate, "MM.yyyy");
+  const parsedEndDate = parseDate(endDate, "MM.yyyy");
+
+  if (!endDate) {
+    return <small>{parsedStartDate}</small>;
+  }
+
+  return (
+    <small>
+      {parsedStartDate} - {parsedEndDate}
+      {city && (
+        <>
+          {" //"} {city}
+        </>
+      )}
+    </small>
   );
 }
