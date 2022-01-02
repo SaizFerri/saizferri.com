@@ -1,12 +1,15 @@
 import classnames from "classnames";
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import ITimelineItem from "../../../interfaces/timelineItem.interface";
-import { imageLoader } from "../../../util/directus";
-import Label from "../../Label/Label";
-import { format } from "date-fns";
+
+import Label from "@components/Label/Label";
+
+import { imageLoader } from "@utils/directus";
+
+import ITimelineItem from "@interfaces/timelineItem.interface";
 
 export default function TimelineItem({
   imgSrc,

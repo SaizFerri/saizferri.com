@@ -3,26 +3,28 @@ import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+
+import Contact from "@components/Contact/Contact";
+import Footer from "@components/Footer/Footer";
+import Hero from "@components/Hero/Hero";
+import Navigation from "@components/Navigation/Navigation";
+import Projects from "@components/Projects/Projects";
+import Timeline from "@components/Timeline/Timeline";
+
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
-import Contact from "../components/Contact/Contact";
-import Footer from "../components/Footer/Footer";
-import Hero from "../components/Hero/Hero";
-import Navigation from "../components/Navigation/Navigation";
-import Projects from "../components/Projects/Projects";
-import Timeline from "../components/Timeline/Timeline";
 import GET_ALL_EDUCATION from "../graphql/queries/home/getAllEducation.gql";
-import GET_ALL_PROJECTS from "../graphql/queries/home/getAllProjects.gql";
 import GET_ALL_EXPERIENCE from "../graphql/queries/home/getAllExperience.gql";
+import GET_ALL_PROJECTS from "../graphql/queries/home/getAllProjects.gql";
 import GET_HOMEPAGE from "../graphql/queries/home/getHomepageData.gql";
 import {
   EducationDto,
   ExperienceDto,
-  LabelDto,
   HomepageDto,
+  LabelDto,
   ProjectDto,
 } from "../interfaces/dto.interface";
-import TimelineItem from "../interfaces/timelineItem.interface";
 import { ProjectItem } from "../interfaces/projectItem.interface";
+import TimelineItem from "../interfaces/timelineItem.interface";
 
 export default function Home({
   homepageData,

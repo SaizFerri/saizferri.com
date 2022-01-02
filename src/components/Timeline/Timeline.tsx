@@ -1,4 +1,5 @@
 import React from "react";
+
 import ITimelineItem from "../../interfaces/timelineItem.interface";
 import TimelineItem from "./Item/TimelineItem";
 

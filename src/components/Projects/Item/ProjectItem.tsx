@@ -2,13 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { ExternalLink, GitHub } from "react-feather";
-import { imageLoader } from "../../../util/directus";
-import Label from "../../Label/Label";
 import ReactMarkdown from "react-markdown";
+
+import Label from "@components/Label/Label";
+
+import { imageLoader } from "@utils/directus";
+
 import {
   ProjectItem as IProjectItem,
   ProjectLink,
-} from "../../../interfaces/projectItem.interface";
+} from "@interfaces/projectItem.interface";
 
 export default function ProjectItem({
   type,

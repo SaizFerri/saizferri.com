@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectItem as IProjectItem } from "../../interfaces/projectItem.interface";
+import { ProjectItem as IProjectItem } from "@interfaces/projectItem.interface";
 import ProjectItem from "./Item/ProjectItem";
 
 export default function Projects({ items }: Props) {

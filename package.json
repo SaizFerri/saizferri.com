@@ -28,6 +28,7 @@
     "rehype-sanitize": "^5.0.1"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.1.1",
     "@types/lodash": "^4.14.178",
     "@types/react": "^17.0.38",
     "eslint": "^8.6.0",
