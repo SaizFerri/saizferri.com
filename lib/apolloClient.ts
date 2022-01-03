@@ -1,14 +1,14 @@
-import { useMemo } from "react";
 import {
   ApolloClient,
-  from,
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
+  from,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import merge from "deepmerge";
 import isEqual from "lodash/isEqual";
-import { onError } from "@apollo/client/link/error";
+import { useMemo } from "react";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 

@@ -11,5 +11,21 @@ query getHomepageData {
     educationTitle
     contactTitle
     contactDescription
+
+    translations {
+      language {
+        code
+      }
+      heroSmallTitle
+      heroTitle
+      heroDescription
+      aboutTitle
+      aboutDescription
+      experienceTitle
+      projectsTitle
+      educationTitle
+      contactTitle
+      contactDescription
+    }
   }
 }

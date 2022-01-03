@@ -1,5 +1,14 @@
 {
   "printWidth": 80,
   "singleQuote": false,
-  "semicolons": true
+  "semicolons": true,
+  "importOrder": [
+    "^@components/(.*)$",
+    "^@utils/(.*)$",
+    "^@interfaces/(.*)$",
+    "^@services/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

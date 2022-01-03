@@ -21,14 +21,22 @@ export interface ExperienceDto {
   description: string;
   company: string;
   companyUrl: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   city: string;
   image: {
     id: string;
     title: string;
   };
   labels: LabelDto[];
+  translations: Array<{
+    language: {
+      code: string;
+    };
+    position: string;
+    description: string;
+    city: string;
+  }>;
 }
 
 export interface ProjectDto {
@@ -52,8 +60,8 @@ export interface EducationDto {
   title: string;
   description: string;
   place: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   city: string;
   image: {
     id: string;

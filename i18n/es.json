@@ -1,0 +1,12 @@
+{
+  "globals": {
+    "at": "en",
+    "always": "siempre"
+  },
+  "projects": {
+    "present": "presente"
+  },
+  "footer": {
+    "text": "© {year} - Hecho con mucha 🍺 por <primary>Adrian Saiz</primary> con React y Next.js"
+  }
+}

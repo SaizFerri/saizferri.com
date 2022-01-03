@@ -1,0 +1,21 @@
+.select {
+  position: relative;
+  display: inline-flex;
+  border-radius: 5px;
+  color: $color-text;
+  background-color: $color-background;
+
+  select {
+    color: $color-text;
+    font-size: font-size(base);
+    padding: spacing(xxsmall) spacing(large) spacing(xxsmall) spacing(small);
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    right: spacing(xxsmall);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+}

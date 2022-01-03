@@ -11,5 +11,13 @@ query getAllEducation {
       id
       title
     }
+    translations {
+      language {
+        code
+      }
+      title
+      description
+      city
+    }
   }
 }
