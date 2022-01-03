@@ -1,0 +1,13 @@
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  color: $color-text-inverted;
+  border: none;
+  background: transparent;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
