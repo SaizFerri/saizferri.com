@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import * as fns from "date-fns";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -77,8 +78,12 @@ function TimelineItemCompany({
   company,
   companyUrl,
 }: Pick<ITimelineItem, "company" | "companyUrl">) {
+  const t = useTranslations("globals");
+
   const Content = ({ children }: { children: React.ReactNode }) => (
-    <>&nbsp;at&nbsp;{children}</>
+    <>
+      &nbsp;{t("at")}&nbsp;{children}
+    </>
   );
 
   if (!companyUrl) {

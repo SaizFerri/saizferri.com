@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetStaticPropsContext } from "next";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -112,28 +112,34 @@ interface Props {
   educationData: TimelineItem[];
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({
+  locale,
+}: GetStaticPropsContext) => {
   const apolloClient = initializeApollo();
 
   const homepageData = await getCollection({
     query: GET_HOMEPAGE,
+    locale,
     collectionName: Collection.HOMEPAGE,
   });
 
   const experienceData = await getCollection<ExperienceDto, TimelineItem>({
     query: GET_ALL_EXPERIENCE,
+    locale,
     collectionName: Collection.EXPERIENCE,
     mapper: mapExperieceToTimelineItem,
   });
 
   const projectsData = await getCollection<ProjectDto, ProjectItem>({
     query: GET_ALL_PROJECTS,
+    locale,
     collectionName: Collection.PROJECTS,
     mapper: mapProjectToProjectItem,
   });
 
   const educationData = await getCollection<EducationDto, TimelineItem>({
     query: GET_ALL_EDUCATION,
+    locale,
     collectionName: Collection.EDUCATION,
     mapper: mapEducationToTimelineItem,
   });
@@ -144,6 +150,9 @@ export const getStaticProps: GetStaticProps = async () => {
       experienceData,
       projectsData,
       educationData,
+      messages: (
+        (await import(`../../i18n/${locale}.json`)) as { default: unknown }
+      ).default,
     },
     revalidate: 60,
   });

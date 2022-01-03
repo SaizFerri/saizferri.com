@@ -7,24 +7,33 @@ import {
 import { ProjectItem } from "@interfaces/projectItem.interface";
 import TimelineItem from "@interfaces/timelineItem.interface";
 
+import { translate } from "./translate";
+
 export const mapExperieceToTimelineItem = (
-  item: ExperienceDto
-): TimelineItem => ({
-  id: item.id,
-  position: item.position,
-  description: item.description,
-  imgSrc: item.image.id,
-  imgAlt: item.image.title,
-  company: item.company,
-  companyUrl: item.companyUrl,
-  startDate: item.startDate,
-  endDate: item.endDate ?? "present",
-  city: item.city,
-  labels: item.labels.map((label: LabelDto) => label.label.name),
-});
+  item: ExperienceDto,
+  locale: string,
+  translations: any
+): TimelineItem => {
+  const t = translate(item, locale);
+  return {
+    id: item.id,
+    position: t("position"),
+    description: t("description"),
+    imgSrc: item.image.id,
+    imgAlt: item.image.title,
+    company: item.company,
+    companyUrl: item.companyUrl,
+    startDate: item.startDate,
+    endDate: item.endDate ?? translations.projects.present,
+    city: t("city"),
+    labels: item.labels.map((label: LabelDto) => label.label.name),
+  };
+};
 
 export const mapEducationToTimelineItem = (
-  item: EducationDto
+  item: EducationDto,
+  locale: string,
+  translations: any
 ): TimelineItem => ({
   id: item.id,
   position: item.title,
@@ -32,12 +41,16 @@ export const mapEducationToTimelineItem = (
   imgSrc: item.image.id,
   imgAlt: item.image.title,
   company: item.place,
-  startDate: item.startDate ?? "always",
+  startDate: item.startDate ?? translations.globals.always,
   endDate: item.endDate,
   city: item.city,
 });
 
-export const mapProjectToProjectItem = (item: ProjectDto): ProjectItem => ({
+export const mapProjectToProjectItem = (
+  item: ProjectDto,
+  locale: string,
+  translations: any
+): ProjectItem => ({
   id: item.id,
   type: item.type,
   title: item.title,

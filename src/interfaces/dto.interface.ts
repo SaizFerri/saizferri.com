@@ -29,6 +29,14 @@ export interface ExperienceDto {
     title: string;
   };
   labels: LabelDto[];
+  translations: Array<{
+    language: {
+      code: string;
+    };
+    position: string;
+    description: string;
+    city: string;
+  }>;
 }
 
 export interface ProjectDto {

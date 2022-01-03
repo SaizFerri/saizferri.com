@@ -17,5 +17,13 @@ query getAllExperience {
         name
       }
     }
+    translations {
+      language {
+        code
+      }
+      position
+      description
+      city
+    }
   }
 }
