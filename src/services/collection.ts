@@ -27,6 +27,11 @@ export async function getCollection<T, R>({
     const data = response.data[collectionName];
 
     if (!Array.isArray(data)) {
+      if (mapper && typeof mapper === "function") {
+        return [data].map((item: T) =>
+          mapper(item, locale, translations)
+        )[0] as R;
+      }
       return data;
     }
 

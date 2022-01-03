@@ -14,6 +14,7 @@ import Timeline from "@components/Timeline/Timeline";
 import {
   mapEducationToTimelineItem,
   mapExperieceToTimelineItem,
+  mapHomepageToTranslatedHomepage,
   mapProjectToProjectItem,
 } from "@utils/mappers";
 
@@ -117,10 +118,11 @@ export const getStaticProps: GetStaticProps = async ({
 }: GetStaticPropsContext) => {
   const apolloClient = initializeApollo();
 
-  const homepageData = await getCollection({
+  const homepageData = await getCollection<HomepageDto, HomepageDto>({
     query: GET_HOMEPAGE,
     locale,
     collectionName: Collection.HOMEPAGE,
+    mapper: mapHomepageToTranslatedHomepage,
   });
 
   const experienceData = await getCollection<ExperienceDto, TimelineItem>({
@@ -146,7 +148,7 @@ export const getStaticProps: GetStaticProps = async ({
 
   return addApolloState(apolloClient, {
     props: {
-      homepageData,
+      homepageData: homepageData,
       experienceData,
       projectsData,
       educationData,

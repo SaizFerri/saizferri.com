@@ -16,5 +16,11 @@ query getAllProjects {
         name
       }
     }
+    translations {
+      language {
+        code
+      }
+      description
+    }
   }
 }
