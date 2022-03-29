@@ -1,6 +1,7 @@
-query getAllExperience {
-  experiences(sort: "-startDate") {
+query getAllExperience($status: [String]) {
+  experiences(filter: { status: { _in: $status } }, sort: "-startDate") {
     id
+    sort
     position
     description
     company

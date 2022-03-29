@@ -21,7 +21,7 @@ import {
 import { getCollection } from "@services/collection";
 
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
-import { Collection } from "../const/collections";
+import { COLLECTION_STATUS, Collection } from "../const/collections";
 import GET_ALL_EDUCATION from "../graphql/queries/home/getAllEducation.gql";
 import GET_ALL_EXPERIENCE from "../graphql/queries/home/getAllExperience.gql";
 import GET_ALL_PROJECTS from "../graphql/queries/home/getAllProjects.gql";
@@ -130,6 +130,9 @@ export const getStaticProps: GetStaticProps = async ({
     locale,
     collectionName: Collection.EXPERIENCE,
     mapper: mapExperieceToTimelineItem,
+    variables: {
+      status: COLLECTION_STATUS,
+    },
   });
 
   const projectsData = await getCollection<ProjectDto, ProjectItem>({
@@ -137,6 +140,9 @@ export const getStaticProps: GetStaticProps = async ({
     locale,
     collectionName: Collection.PROJECTS,
     mapper: mapProjectToProjectItem,
+    variables: {
+      status: COLLECTION_STATUS,
+    },
   });
 
   const educationData = await getCollection<EducationDto, TimelineItem>({

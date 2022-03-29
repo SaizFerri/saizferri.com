@@ -1,5 +1,6 @@
 export default interface TimelineItem {
   id: number;
+  sort?: number;
   imgSrc: string;
   imgAlt: string;
   position: string;

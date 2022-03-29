@@ -1,6 +1,7 @@
-query getAllProjects {
-  projects {
+query getAllProjects($status: [String]) {
+  projects(filter: { status: { _in: $status } }) {
     id
+    sort
     title
     description
     type
