@@ -17,6 +17,7 @@ export interface HomepageDto {
 
 export interface ExperienceDto {
   id: number;
+  sort: number;
   position: string;
   description: string;
   company: string;
@@ -41,6 +42,7 @@ export interface ExperienceDto {
 
 export interface ProjectDto {
   id: number;
+  sort: number;
   title: string;
   description: string;
   type: string;

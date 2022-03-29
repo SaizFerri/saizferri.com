@@ -1,3 +1,5 @@
+import { DEFAULT_LANG } from "const/global";
+
 import { initializeApollo } from "../../lib/apolloClient";
 
 interface GetCollectionPayload<T, R> {
@@ -10,7 +12,7 @@ interface GetCollectionPayload<T, R> {
 
 export async function getCollection<T, R>({
   query,
-  locale = "en",
+  locale = DEFAULT_LANG,
   variables = {},
   collectionName,
   mapper,
@@ -39,8 +41,25 @@ export async function getCollection<T, R>({
       return null;
     }
 
-    return data.map((item: T) => mapper(item, locale, translations)) as R[];
+    const isSortable = data.some((item) => !!item.sort);
+    const items = isSortable ? order<Sortable<T>>(data) : data;
+
+    return items.map((item: T) => mapper(item, locale, translations)) as R[];
   }
 
   return null;
 }
+
+function order<T extends Sort>(data: T[]): T[] {
+  return [...data].sort((a: T, b: T) => {
+    if (!a.sort || !b.sort) {
+      return 0;
+    }
+    return a.sort - b.sort;
+  });
+}
+
+interface Sort {
+  sort: number;
+}
+type Sortable<T> = T & Sort;

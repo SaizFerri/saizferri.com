@@ -38,6 +38,7 @@ export const mapExperieceToTimelineItem = (
   const t = translate(item, locale);
   return {
     id: item.id,
+    sort: item.sort ?? null,
     position: t("position"),
     description: t("description"),
     imgSrc: item.image.id,
@@ -79,6 +80,7 @@ export const mapProjectToProjectItem = (
 
   return {
     id: item.id,
+    sort: item.sort ?? null,
     type: item.type,
     title: item.title,
     description: t("description"),
